@@ -1,4 +1,3 @@
-Baby 💌, [11/3/2024 11:50 AM]
 import matplotlib.pyplot as plt
 from itertools import permutations
 import random
