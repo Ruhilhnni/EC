@@ -11,16 +11,16 @@ st.write("Enter up to 10 cities with their coordinates (x,y) in range 1-10.")
 
 # Default city values
 default_cities = [
-    {"name": "Ipoh", "x": 0, "y": 1},
-    {"name": "Kangar", "x": 3, "y": 2},
-    {"name": "Alor Setar", "x": 6, "y": 1},
-    {"name": "George Town", "x": 7, "y": 4.5},
-    {"name": "Shah Alam", "x": 15, "y": -1},
-    {"name": "Johor Bahru", "x": 10, "y": 2.5},
-    {"name": "Kuantan", "x": 16, "y": 11},
-    {"name": "Kuala Terengganu", "x": 5, "y": 6},
-    {"name": "Kota Bharu", "x": 8, "y": 9},
-    {"name": "Bota", "x": 1.5, "y": 12},
+    {"name": "Perak", "x": 0, "y": 1},
+    {"name": "Melaka", "x": 3, "y": 2},
+    {"name": "Johor", "x": 6, "y": 1},
+    {"name": "Negeri Sembilan", "x": 7, "y": 4.5},
+    {"name": "Perlis", "x": 15, "y": -1},
+    {"name": "Kelantan", "x": 10, "y": 2.5},
+    {"name": "Pahang", "x": 16, "y": 11},
+    {"name": "Terengganu", "x": 5, "y": 6},
+    {"name": "Selangor", "x": 8, "y": 9},
+    {"name": "Pulau Pinang", "x": 1.5, "y": 12},
 ]
 
 # Variables to store city names and coordinates
@@ -53,16 +53,16 @@ city_coords = dict(zip(cities_names, zip(x, y)))
 
 # City Icons
 city_icons = {
-    "Ipoh": "♕",
-    "Kangar": "♖",
-    "Alor Setar": "♗",
-    "George Town": "♘",
-    "Shah Alam": "♙",
-    "Johor Bahru": "♔",
-    "Kuantan": "♚",
-    "Kuala Terengganu": "♛",
-    "Kota Bharu": "♜",
-    "Bota": "♝"
+    "Perak": "♕",
+    "Melaka": "♖",
+    "Johor": "♗",
+    "Negeri Sembilan": "♘",
+    "Perlis": "♙",
+    "Kelantan": "♔",
+    "Pahang": "♚",
+    "Terengganu": "♛",
+    "Selangor": "♜",
+    "Pulau Pinang": "♝"
 }
 
 # Genetic Algorithm Parameters
