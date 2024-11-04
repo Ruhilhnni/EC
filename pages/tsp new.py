@@ -1,23 +1,45 @@
+import streamlit as st
 import matplotlib.pyplot as plt
 from itertools import permutations
 import random
 import numpy as np
 import seaborn as sns
-import streamlit as st
 
 # Streamlit Title
-st.title("City Coordinates Input")
+st.title("Traveling Salesman Problem with City Coordinates Input")
 
-# Coordinates of Cities
-x = [0, 3, 6, 7, 15, 10, 16, 5, 8, 1.5]
-y = [1, 2, 1, 4.5, -1, 2.5, 11, 6, 9, 12]
-cities_names = ["Perak", "Negeri Sembilan", "Melaka", "Johor Bharu", "Selangor", "Perlis", "Kuala Lumpur", "Pahang", "Kelantan", "Terengganu"]
-city_coords = dict(zip(cities_names, zip(x, y)))
+# Subtitle and instructions for city input
+st.write("Enter up to 10 cities with their coordinates (x, y) in range 1-10.")
 
-# Input Parameters
-city_name = st.text_input("Enter Your City Name")
-city_x = st.number_input("X Coordinate", value=0, min_value=0, max_value=16)
-city_y = st.number_input("Y Coordinate", value=0, min_value=-2, max_value=12)
+# Create input fields for up to 10 cities with x and y coordinates
+cities = []
+for i in range(1, 11):
+    col1, col2, col3, col4 = st.columns([3, 2, 2, 1])
+    
+    # City Name input
+    with col1:
+        city_name = st.text_input(f"City {i}", value="", key=f"city_{i}_name", placeholder="Enter city name")
+    
+    # X-coordinate input
+    with col2:
+        x_coord = st.number_input(f"x-coordinate (City {i})", min_value=1, max_value=10, value=1, key=f"city_{i}_x")
+    
+    # Y-coordinate input
+    with col3:
+        y_coord = st.number_input(f"y-coordinate (City {i})", min_value=1, max_value=10, value=1, key=f"city_{i}_y")
+    
+    # If city name is entered, add to cities list
+    if city_name:
+        cities.append((city_name, x_coord, y_coord))
+
+# If there are entered cities, create the coordinates dictionary
+if cities:
+    city_coords = {city[0]: (city[1], city[2]) for city in cities}
+else:
+    st.warning("Please enter at least one city to proceed.")
+    st.stop()
+
+# Parameters for the Genetic Algorithm
 n_population = 250
 crossover_per = 0.8
 mutation_per = 0.2
@@ -29,27 +51,12 @@ start_ga = st.button("Find The Best Route")
 # Only run the algorithm and display the results if the button is clicked
 if start_ga:
     # Pastel Palette
-    colors = sns.color_palette("pastel", len(cities_names))
-
-    # City Icons
-    city_icons = {
-        "Gliwice": "♕",
-        "Cairo": "♖",
-        "Rome": "♗",
-        "Krakow": "♘",
-        "Paris": "♙",
-        "Alexandria": "♔",
-        "Berlin": "♚",
-        "Tokyo": "♛",
-        "Rio": "♜",
-        "Budapest": "♝",
-    }
+    colors = sns.color_palette("pastel", len(cities))
 
     # Plot City Locations
     fig, ax = plt.subplots()
     for i, (city, (city_x, city_y)) in enumerate(city_coords.items()):
         ax.scatter(city_x, city_y, c=[colors[i]], s=1200)
-        ax.annotate(city_icons[city], (city_x, city_y), fontsize=40, ha='center', va='center')
         ax.annotate(city, (city_x, city_y), fontsize=12, ha='center', va='bottom', xytext=(0, -30), textcoords='offset points')
         for j, (other_city, (other_x, other_y)) in enumerate(city_coords.items()):
             if i != j:
@@ -79,7 +86,7 @@ if start_ga:
 
     # Crossover and Mutation Functions
     def crossover(parent_1, parent_2):
-        cut = random.randint(1, len(cities_names) - 2)
+        cut = random.randint(1, len(cities) - 2)
         offspring_1 = parent_1[:cut] + [city for city in parent_2 if city not in parent_1[:cut]]
         offspring_2 = parent_2[:cut] + [city for city in parent_1 if city not in parent_2[:cut]]
         return offspring_1, offspring_2
@@ -108,7 +115,7 @@ if start_ga:
         return population
 
     # Run Genetic Algorithm
-    best_population = run_ga(cities_names, n_population, n_generations, crossover_per, mutation_per)
+    best_population = run_ga(list(city_coords.keys()), n_population, n_generations, crossover_per, mutation_per)
 
     # Calculate and Display Best Route
     best_route = min(best_population, key=total_dist_individual)
@@ -123,9 +130,9 @@ if start_ga:
     ax.plot(x_best, y_best, 'go-', label='Best Route', linewidth=2.5)
     plt.legend()
 
-    for i in range(len(x)):
-        for j in range(i + 1, len(x)):
-            ax.plot([x[i], x[j]], [y[i], y[j]], 'k-', alpha=0.09, linewidth=1)
+    for i in range(len(city_coords)):
+        for j in range(i + 1, len(city_coords)):
+            ax.plot([x_best[i], x_best[j]], [y_best[i], y_best[j]], 'k-', alpha=0.09, linewidth=1)
 
     plt.title("TSP Best Route Using GA", fontsize=25)
     plt.suptitle(f"Total Distance: {min_distance:.2f} | Generations: {n_generations} | Population Size: {n_population} | Crossover: {crossover_per} | Mutation: {mutation_per}", fontsize=18, y=1.047)
