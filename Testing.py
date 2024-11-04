@@ -106,7 +106,7 @@ def crossover(parent_1, parent_2):
     offspring_2 = parent_2[:cut] + [city for city in parent_1 if city not in parent_2[:cut]]
     return offspring_1, offspring_2
 
-Baby 💌, [11/3/2024 11:50 AM]
+
 # Mutation Function
 def mutation(offspring):
     index_1, index_2 = random.sample(range(len(offspring)), 2)
