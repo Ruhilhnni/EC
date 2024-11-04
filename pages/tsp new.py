@@ -282,7 +282,7 @@ for i in range(0,len(parents_list), 2):
             offspring_list.append(offspring_2)
 
 
-        mixed_offspring = parents_list + offspring_list
+ mixed_offspring = parents_list + offspring_list
         fitness_probs = fitness_prob(mixed_offspring)
         sorted_fitness_indices = np.argsort(fitness_probs)[::-1]
         best_fitness_indices = sorted_fitness_indices[0:int(0.8*n_population)]
