@@ -267,7 +267,7 @@ def run_ga(cities_names, n_population, n_generations, crossover_per, mutation_pe
             parents_list.append(roulette_wheel(best_mixed_offspring, fitness_probs))
 
 offspring_list = []
-        for i in range(0,len(parents_list), 2):
+for i in range(0,len(parents_list), 2):
             offspring_1, offspring_2 = crossover(parents_list[i], parents_list[i+1])
 
             mutate_threashold = random.random()
