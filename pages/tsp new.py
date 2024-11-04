@@ -6,7 +6,7 @@ import numpy as np
 import seaborn as sns
 
 # Streamlit Title
-st.title("Traveling Salesman Problem with City Coordinates Input")
+st.title("City Coordinates Input")
 
 # Subtitle and instructions for city input
 st.write("Enter up to 10 cities with their coordinates (x, y) in range 1-10.")
