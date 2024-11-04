@@ -11,6 +11,12 @@ st.title("City Coordinates Input")
 # Subtitle and instructions for city input
 st.write("Enter up to 10 cities with their coordinates (x, y) in range 1-10.")
 
+# Coordinates of Cities
+x = [0, 3, 6, 7, 15, 10, 16, 5, 8, 1.5]
+y = [1, 2, 1, 4.5, -1, 2.5, 11, 6, 9, 12]
+cities_names = ["Perak", "Negeri Sembilan", "Johor", "Melaka", "Perlis", "Melaka", "Kelantan", "Selangor", "Terengganu", "Kuala Lumpur"]
+city_coords = dict(zip(cities_names, zip(x, y)))
+
 # Create input fields for up to 10 cities with x and y coordinates
 cities = []
 for i in range(1, 11):
