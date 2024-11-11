@@ -45,6 +45,7 @@ from numpy import argsort
 from numpy.random import randn
 from numpy.random import rand
 from numpy.random import seed
+st.write("Develop a (mu, λ)-ES")
 
 # objective function
 def objective(v):
@@ -126,6 +127,9 @@ from numpy import argsort
 from numpy.random import randn
 from numpy.random import rand
 from numpy.random import seed
+
+st.text("")
+st.write("Develop a (mu + λ)-ES")
 
 # objective function
 def objective(v):
