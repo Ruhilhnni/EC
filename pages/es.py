@@ -10,7 +10,7 @@ def objective(x, y):
 
 # Function to plot the Ackley surface
 def plot_ackley():
-    r_min, r_max = -5.0, 5.0
+    r_min, r_max = -15.0, 15.0
     xaxis = np.arange(r_min, r_max, 0.1)
     yaxis = np.arange(r_min, r_max, 0.1)
     x, y = np.meshgrid(xaxis, yaxis)
@@ -63,7 +63,7 @@ plot_ackley()
 
 # Parameters for Evolution Strategy
 np.random.seed(1)
-bounds = np.array([[-5.0, 5.0], [-5.0, 5.0]])
+bounds = np.array([[-15.0, 15.0], [-15.0, 15.0]])
 n_iter = 500
 step_size = 0.15
 mu = 20
