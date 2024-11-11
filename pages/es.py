@@ -11,7 +11,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import streamlit as st
 
 # Streamlit App Setup
-st.title("Ackley Function Optimization using Evolution Strategy")
+st.title("Evolution Strategies From Scratch in Python")
 st.write("This app demonstrates the optimization of the Ackley function using two evolution strategies: (μ, λ) and (μ + λ).")
 
 # objective function
