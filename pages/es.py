@@ -192,3 +192,23 @@ lam = 100
 best, score = es_plus(objective, bounds, n_iter, step_size, mu, lam)
 st.write('Done!')
 st.write('f(%s) = %f' % (best, score))
+
+# Streamlit App Setup
+st.title("Ackley Function Optimization using Evolution Strategy")
+st.write("This app demonstrates the optimization of the Ackley function using two evolution strategies: (μ, λ) and (μ + λ).")
+
+# Show Ackley Function Plot
+st.subheader("3D Plot of the Ackley Function")
+plot_ackley()
+
+# Optimization with (μ, λ) Evolution Strategy
+st.subheader("Evolution Strategy (μ, λ) Optimization")
+best_comma, score_comma = es_comma(objective, bounds, n_iter, step_size, mu, lam)
+st.write('Optimization Complete for (μ, λ) Strategy!')
+st.write(f'Best Solution Found: f({best_comma}) = {score_comma:.5f}')
+
+# Optimization with (μ + λ) Evolution Strategy
+st.subheader("Evolution Strategy (μ + λ) Optimization")
+best_plus, score_plus = es_plus(objective, bounds, n_iter, step_size, mu, lam)
+st.write('Optimization Complete for (μ + λ) Strategy!')
+st.write(f'Best Solution Found: f({best_plus}) = {score_plus:.5f}')
