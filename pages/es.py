@@ -71,4 +71,4 @@ lam = 100
 st.subheader("Evolution Strategy (μ, λ) Results")
 best, score = es_comma(objective, bounds, n_iter, step_size, mu, lam)
 st.write('Done!')
-st.write(f'Optimal Solution: f({best}) = {
+st.write(f'Optimal Solution: f({best}) = {score}')
