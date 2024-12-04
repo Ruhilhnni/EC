@@ -1,4 +1,5 @@
 import csv
+import streamlit as st
 
 # Function to read the CSV file and convert it to the desired format
 def read_csv_to_dict(file_path):
@@ -15,21 +16,20 @@ def read_csv_to_dict(file_path):
             program_ratings[program] = ratings
     
     return program_ratings
-
+    
 # Path to the CSV file
 file_path = '/content/program_ratings.csv'
-
 # Get the data in the required format
 program_ratings_dict = read_csv_to_dict(file_path)
 
 # Print the result (you can also return or process it further)
 for program, ratings in program_ratings_dict.items():
-    print(f"'{program}': {ratings},")
+    st.write(f"'{program}': {ratings},")
 
 
 import random
 
-##################################### DEFINING PARAMETERS AND DATASET ################################################################
+## DEFINING PARAMETERS AND DATASET 
 # Sample rating programs dataset for each time slot.
 ratings = program_ratings_dict
 
@@ -42,7 +42,7 @@ EL_S = 2
 all_programs = list(ratings.keys()) # all programs
 all_time_slots = list(range(6, 24)) # time slots
 
-######################################### DEFINING FUNCTIONS ########################################################################
+### DEFINING FUNCTIONS ########################################################################
 # defining fitness function
 def fitness_function(schedule):
     total_rating = 0
@@ -81,8 +81,7 @@ all_possible_schedules = initialize_pop(all_programs, all_time_slots)
 # callin the schedule func.
 best_schedule = finding_best_schedule(all_possible_schedules)
 
-
-############################################# GENETIC ALGORITHM #############################################################################
+############################################ GENETIC ALGORITHM #############################################################################
 
 # Crossover
 def crossover(schedule1, schedule2):
@@ -150,9 +149,8 @@ genetic_schedule = genetic_algorithm(initial_best_schedule, generations=GEN, pop
 
 final_schedule = initial_best_schedule + genetic_schedule[:rem_t_slots]
 
-print("\nFinal Optimal Schedule:")
+st.write("\nFinal Optimal Schedule:")
 for time_slot, program in enumerate(final_schedule):
-    print(f"Time Slot {all_time_slots[time_slot]:02d}:00 - Program {program}")
+    st.write(f"Time Slot {all_time_slots[time_slot]:02d}:00 - Program {program}")
 
-print("Total Ratings:", fitness_function(final_schedule))
-
+st.write("Total Ratings:", fitness_function(final_schedule))
