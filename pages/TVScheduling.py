@@ -5,8 +5,20 @@ import random
 # Title for the app
 st.title("Genetic Algorithm Parameter Input")
 
-# Sidebar introduction
-st.sidebar.write("Modify the genetic algorithm parameters below:")
+# Inputs for crossover rate and mutation rate
+CO_R = st.number_input(
+    "Enter Crossover Rate (CO_R)", 
+    min_value=0.0, max_value=0.95, step=0.01, value=0.8
+)
+MUT_R = st.number_input(
+    "Enter Mutation Rate (MUT_R)", 
+    min_value=0.01, max_value=0.20, step=0.01, value=0.2
+)
+
+# Display selected parameters
+st.write("### Selected Parameters:")
+st.write(f"- Crossover Rate (CO_R): {CO_R}")
+st.write(f"- Mutation Rate (MUT_R): {MUT_R}")
 
 # Function to read the CSV file and convert it to the desired format
 def read_csv_to_dict(file_path):
@@ -30,8 +42,8 @@ file_path = 'pages/program_ratings.csv'
 program_ratings_dict = read_csv_to_dict(file_path)
 
 # Print the result (you can also return or process it further)
-# for program, ratings in program_ratings_dict.items():
-#     st.write(f"'{program}': {ratings},")
+for program, ratings in program_ratings_dict.items():
+    st.write(f"'{program}': {ratings},")
 
 
 import random
@@ -133,7 +145,7 @@ def evaluate_fitness(schedule):
     return fitness_function(schedule)
 
 # genetic algorithms with parameters
-def genetic_algorithm(initial_schedule, generations=GEN, population_size=POP, crossover_rate=co_r, mutation_rate=mut_r, elitism_size=EL_S):
+def genetic_algorithm(initial_schedule, generations=GEN, population_size=POP, crossover_rate=CO_R, mutation_rate=MUT_R, elitism_size=EL_S):
 
     population = [initial_schedule]
 
@@ -169,18 +181,20 @@ def genetic_algorithm(initial_schedule, generations=GEN, population_size=POP, cr
 ##################################################### RESULTS ###################################################################################
 
 # brute force
+# Get the initial schedule from your brute-force or predefined logic
 initial_best_schedule = finding_best_schedule(all_possible_schedules)
 
-rem_t_slots = len(all_time_slots) - len(initial_best_schedule)
-genetic_schedule = genetic_algorithm(initial_best_schedule, generations=GEN, population_size=POP, elitism_size=EL_S)
+# Call the genetic algorithm with user inputs
+final_schedule = genetic_algorithm(
+    initial_schedule=initial_best_schedule,
+    crossover_rate=CO_R,
+    mutation_rate=MUT_R
+)
 
-final_schedule = initial_best_schedule + genetic_schedule[:rem_t_slots]
-
-st.write("\nFinal Optimal Schedule:")
+# Display the results
+st.write("### Final Optimal Schedule:")
 for time_slot, program in enumerate(final_schedule):
     st.write(f"Time Slot {all_time_slots[time_slot]:02d}:00 - Program {program}")
 
 st.write("Total Ratings:", fitness_function(final_schedule))
-
-                
-                
+        
