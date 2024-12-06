@@ -183,12 +183,20 @@ def genetic_algorithm(initial_schedule, generations=GEN, population_size=POP, cr
 def create_schedule_table(schedule, time_slots):
     """
     Convert the schedule and time slots into a table format.
+    Handles mismatched lengths by truncating or padding with placeholders.
     """
+    # Ensure both lists are of the same length
+    if len(schedule) < len(time_slots):
+        schedule += ["No Program"] * (len(time_slots) - len(schedule))
+    elif len(schedule) > len(time_slots):
+        schedule = schedule[:len(time_slots)]
+    
     data = {
         "Time Slot": [f"{slot}:00" for slot in time_slots],
         "Program": schedule
     }
     return pd.DataFrame(data)
+
 
 ##################################################### RESULTS ###################################################################################
 
