@@ -1,7 +1,7 @@
 import csv
 import streamlit as st
 import random
-import panda as pd
+import pandas as pd
 
 # Title for the app
 st.title("Genetic Algorithm Parameter Input")
@@ -216,6 +216,8 @@ schedule_table = create_schedule_table(final_schedule, all_time_slots)
 # Display the table in Streamlit
 st.write("### Schedule Table:")
 st.table(schedule_table)  # Static table
-# st.dataframe(schedule_table)  # Uncomment for interactive table
+
+# Display the total ratings
+st.write(f"### Total Ratings: {fitness_function(final_schedule)}")
 
         
