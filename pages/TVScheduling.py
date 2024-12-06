@@ -2,6 +2,12 @@ import csv
 import streamlit as st
 import random
 
+# Title for the app
+st.title("Genetic Algorithm Parameter Input")
+
+# Sidebar introduction
+st.sidebar.write("Modify the genetic algorithm parameters below:")
+
 # Function to read the CSV file and convert it to the desired format
 def read_csv_to_dict(file_path):
     program_ratings = {}
@@ -36,9 +42,33 @@ ratings = program_ratings_dict
 
 GEN = 100
 POP = 50
-CO_R = 0.8
-MUT_R = 0.2
 EL_S = 2
+
+# Default values from the image instructions
+default_co_r = 0.8
+default_mut_r = 0.2
+
+# Streamlit sliders for user input
+co_r = st.sidebar.slider(
+    "Crossover Rate (CO_R)", 
+    min_value=0.0, 
+    max_value=0.95, 
+    value=default_co_r, 
+    step=0.01
+)
+
+mut_r = st.sidebar.slider(
+    "Mutation Rate (MUT_R)", 
+    min_value=0.01, 
+    max_value=0.05, 
+    value=default_mut_r, 
+    step=0.01
+)
+
+# Display the selected values
+st.write("### Selected Parameters:")
+st.write(f"- **Crossover Rate (CO_R):** {co_r}")
+st.write(f"- **Mutation Rate (MUT_R):** {mut_r}")
 
 all_programs = list(ratings.keys()) # all programs
 all_time_slots = list(range(6, 24)) # time slots
