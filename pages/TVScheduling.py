@@ -79,9 +79,9 @@ mut_r = st.sidebar.slider(
 )
 
 # Display the selected values
-st.write("### Selected Parameters:")
-st.write(f"- **Crossover Rate (CO_R):** {co_r}")
-st.write(f"- **Mutation Rate (MUT_R):** {mut_r}")
+# st.write("### Selected Parameters:")
+# st.write(f"- **Crossover Rate (CO_R):** {co_r}")
+# st.write(f"- **Mutation Rate (MUT_R):** {mut_r}")
 
 all_programs = list(ratings.keys()) # all programs
 all_time_slots = list(range(6, 24)) # time slots
@@ -210,13 +210,6 @@ final_schedule = genetic_algorithm(
     crossover_rate=CO_R,
     mutation_rate=MUT_R
 )
-
-# Display the results
-st.write("### Final Optimal Schedule:")
-for time_slot, program in enumerate(final_schedule):
-    st.write(f"Time Slot {all_time_slots[time_slot]:02d}:00 - Program {program}")
-
-st.write("Total Ratings:", fitness_function(final_schedule))
 
 # Display the results
 st.write("### Final Optimal Schedule:")
