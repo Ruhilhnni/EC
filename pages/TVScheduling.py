@@ -13,7 +13,7 @@ CO_R = st.number_input(
 )
 MUT_R = st.number_input(
     "Enter Mutation Rate (MUT_R)", 
-    min_value=0.01, max_value=0.05, step=0.01, value=0.2
+    min_value=0.01, max_value=0.05, step=0.01, value=0.02
 )
 
 # Display selected parameters
