@@ -217,12 +217,25 @@ final_schedule = genetic_algorithm(
     #st.write(f"Time Slot {all_time_slots[time_slot]:02d}:00 - Program {program}")
 
 # Create the table from the final schedule
-schedule_table = create_schedule_table(final_schedule, all_time_slots)
+#schedule_table = create_schedule_table(final_schedule, all_time_slots)
 
 # Display the table in Streamlit
-st.write("### Schedule Table:")
-st.table(schedule_table)  # Static table
+#st.write("### Schedule Table:")
+#st.table(schedule_table)  # Static table
 # st.dataframe(schedule_table)  # Uncomment for interactive table
+
+
+def create_schedule_table(schedule, time_slots):
+    if len(schedule) < len(time_slots):
+        schedule += ["No Program"] * (len(time_slots) - len(schedule))  # Pad if too short
+    elif len(schedule) > len(time_slots):
+        schedule = schedule[:len(time_slots)]  # Truncate if too long
+
+    data = {
+        "Time Slot": [f"{slot}:00" for slot in time_slots],
+        "Program": schedule
+    }
+    return pd.DataFrame(data)
 
 st.write("Total Ratings:", fitness_function(final_schedule))
 
