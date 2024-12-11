@@ -4,7 +4,7 @@ import random
 import pandas as pd
 
 # Title for the app
-st.title("Genetic Algorithm Parameter Input")
+st.title("Genetic Algorithm Parameter")
 
 # Inputs for crossover rate and mutation rate
 CO_R = st.number_input(
