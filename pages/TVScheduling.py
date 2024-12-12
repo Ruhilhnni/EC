@@ -116,7 +116,7 @@ if calculate:
         return fitness_function(schedule)
 
     # Genetic Algorithm
-    def genetic_algorithm(initial_schedule, generations=GEN, population_size=POP, crossover_rate=co_r, mutation_rate=mut_r, elitism_size=EL_S):
+    def genetic_algorithm(initial_schedule, generations=GEN, population_size=POP, crossover_rate=CO_R, mutation_rate=MUT_R, elitism_size=EL_S):
         population = [initial_schedule]
 
         for _ in range(population_size - 1):
