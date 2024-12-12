@@ -18,11 +18,6 @@ MUT_R = st.number_input(
 
 calculate = st.button("Calculate")
 
-# Display selected parameters
-st.write("### Selected Parameters:")
-st.write(f"- Crossover Rate : {CO_R}")
-st.write(f"- Mutation Rate : {MUT_R}")
-
 # Function to read the CSV file and convert it to the desired format
 def read_csv_to_dict(file_path):
     program_ratings = {}
@@ -54,9 +49,6 @@ EL_S = 2
 
 all_programs = list(ratings.keys())  # all programs
 all_time_slots = list(range(6, 24))  # time slots
-
-# Calculation button
-calculate = st.button("Calculate")
 
 if calculate:
     ### DEFINING FUNCTIONS ########################################################################
@@ -181,6 +173,11 @@ if calculate:
         "Program": final_schedule
     }
     schedule_df = pd.DataFrame(schedule_program)
+
+    # Display selected parameters
+st.write("### Selected Parameters:")
+st.write(f"- Crossover Rate : {CO_R}")
+st.write(f"- Mutation Rate : {MUT_R}")
 
     # Display results
     st.write("\n### Final Optimal Schedule:")
