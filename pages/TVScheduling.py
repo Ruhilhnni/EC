@@ -9,7 +9,7 @@ st.title(" Assignment : Genetic Algorithm")
 # Inputs for crossover rate and mutation rate
 CO_R = st.number_input(
     "Enter Crossover Rate", 
-    min_value=0.0, max_value=0.95, step=0.01, value=0.8
+    min_value=0.0, max_value=0.96, step=0.01, value=0.8
 )
 MUT_R = st.number_input(
     "Enter Mutation Rate", 
