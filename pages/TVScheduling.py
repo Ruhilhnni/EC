@@ -4,22 +4,22 @@ import random
 import pandas as pd
 
 # Title for the app
-st.title("Genetic Algorithm")
+st.title(" Assignment: Genetic Algorithm")
 
 # Inputs for crossover rate and mutation rate
 CO_R = st.number_input(
-    "Enter Crossover Rate (CO_R)", 
+    "Enter Crossover Rate", 
     min_value=0.0, max_value=0.95, step=0.01, value=0.8
 )
 MUT_R = st.number_input(
-    "Enter Mutation Rate (MUT_R)", 
+    "Enter Mutation Rate", 
     min_value=0.01, max_value=0.05, step=0.01, value=0.02
 )
 
 calculate = st.button("Calculate")
 
 # Display selected parameters
-st.write("### Selected Parameters:")
+st.write("### Selected Parameters :")
 st.write(f"- Crossover Rate : {CO_R}")
 st.write(f"- Mutation Rate : {MUT_R}")
 
@@ -180,6 +180,6 @@ if calculate:
     schedule_df = pd.DataFrame(schedule_program)
 
     # Display results
-    st.write("\n### Final Optimal Schedule:")
+    st.write("\n### Final Optimal Schedule :")
     st.table(schedule_df)
-    st.write("### Total Ratings:", f"{fitness_function(final_schedule):.1f}")
+    st.write("### Total Ratings :", f"{fitness_function(final_schedule):.1f}")
