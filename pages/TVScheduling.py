@@ -18,8 +18,8 @@ MUT_R = st.number_input(
 
 # Display selected parameters
 st.write("### Selected Parameters:")
-st.write(f"- Crossover Rate (CO_R): {CO_R}")
-st.write(f"- Mutation Rate (MUT_R): {MUT_R}")
+st.write(f"- Crossover Rate : {CO_R}")
+st.write(f"- Mutation Rate : {MUT_R}")
 
 # Function to read the CSV file and convert it to the desired format
 def read_csv_to_dict(file_path):
@@ -86,6 +86,9 @@ mut_r = st.sidebar.slider(
 all_programs = list(ratings.keys()) # all programs
 all_time_slots = list(range(6, 24)) # time slots
 
+calculate = st.form_submit_button("Calculate")
+
+if calculate:
 ### DEFINING FUNCTIONS ########################################################################
 # defining fitness function
 def fitness_function(schedule):
