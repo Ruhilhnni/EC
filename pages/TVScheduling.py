@@ -16,6 +16,8 @@ MUT_R = st.number_input(
     min_value=0.01, max_value=0.05, step=0.01, value=0.02
 )
 
+calculate = st.button("Calculate")
+
 # Display selected parameters
 st.write("### Selected Parameters:")
 st.write(f"- Crossover Rate : {CO_R}")
@@ -49,22 +51,6 @@ ratings = program_ratings_dict
 GEN = 100
 POP = 50
 EL_S = 2
-
-# User-selected parameters via sliders
-co_r = st.sidebar.slider(
-    "Crossover Rate (CO_R)", 
-    min_value=0.0, 
-    max_value=0.95, 
-    value=CO_R, 
-    step=0.01
-)
-mut_r = st.sidebar.slider(
-    "Mutation Rate (MUT_R)", 
-    min_value=0.01, 
-    max_value=0.05, 
-    value=MUT_R, 
-    step=0.01
-)
 
 all_programs = list(ratings.keys())  # all programs
 all_time_slots = list(range(6, 24))  # time slots
