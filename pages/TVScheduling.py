@@ -20,7 +20,7 @@ calculate = st.button("Calculate")
 
 # Display selected parameters
 st.write("### Selected Parameters :")
-st.write(f"- Crossover Rate : {CO_R :.1f}")
+st.write(f"- Crossover Rate : {CO_R :.2f}")
 st.write(f"- Mutation Rate : {MUT_R}")
 
 # Function to read the CSV file and convert it to the desired format
