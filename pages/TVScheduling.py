@@ -182,4 +182,4 @@ if calculate:
     # Display results
     st.write("\n### Final Optimal Schedule:")
     st.table(schedule_df)
-    st.write("### Total Ratings:", f"{fitness_function(final_schedule):.2f}")
+    st.write("### Total Ratings:", f"{fitness_function(final_schedule):.1f}")
