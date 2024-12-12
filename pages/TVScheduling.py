@@ -175,9 +175,9 @@ if calculate:
     schedule_df = pd.DataFrame(schedule_program)
 
     # Display selected parameters
-st.write("### Selected Parameters:")
-st.write(f"- Crossover Rate : {CO_R}")
-st.write(f"- Mutation Rate : {MUT_R}")
+    st.write("### Selected Parameters:")
+    st.write(f"- Crossover Rate : {CO_R}")
+    st.write(f"- Mutation Rate : {MUT_R}")
 
     # Display results
     st.write("\n### Final Optimal Schedule:")
